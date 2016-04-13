@@ -1,0 +1,34 @@
+CoLiW este o simpla aplicatie web conceputa sa preia siruri de caractere
+introduse in interfata (front-end) asemanatoare oricarui CLI si sa paseze
+acel sir mai departe back-end-ului care va parsa, analiza si procesa respectivul
+sir de caractere sub forma unei sintaxe de comanda ce suporta comenzi mutiple
+si optiuni variabile in aceeasi maniera cu care s-ar confrunta un parser de
+argumente clasic. Scopul aplicatiei este sa interpreteze corect si sa suporte
+inlantuiri de comenzi si pipe-uri ce vor duce la efectul dorit in urma executiei
+lor, lasand afisat in istoricul interfetei un output relevant.
+
+Aplicatia va folosi tehnologiile Python (Flask, Jinja, peewee), HTML5,
+CSS/Bootstrap, js/jQuery si SQLite si va fi impartita in doua mari module:
+
+    1. Interfata (front-end) ce va fi o consola dinamica ce va cuprinde doua
+       ferestre in raport de 5:1 pentru istoric, respectiv campul de comenzi.
+       Ea va putea prelua comenzi de la utilizator, le va executa la apasarea
+       tastei <Enter>, comunicand cu API-ul (back-end), iar in urma raspunsului
+       dat de acesta, va afisa un text de iesire relevant pe ecran, in urma
+       obtinerii efectului dorit de catre respectiva comanda.
+       Interfata va suporta nivelul minim de interactiuni similare oricari
+       console (ex.: arrow-up/down pentru rasfoirea in comenzi recente;
+       scroll: pentru a naviga prin istoricul de comenzi etc.)
+
+    2. API (back-end) ce va fi responsabil pentru primirea comenzii si de
+       asemenea, executia ei. Va garanta obtinerea efectului dorit in urma
+       executiei respectivelor comenzi, indiferent de complexitate si va avea
+       grija sa furnizeze un raspuns relevant interfetei indiferent daca
+       executia a avut loc cu succes sau nu.
+
+        a. Un set de Views ce vor interpreta rutele inregistrare si vor delega
+           comanda unei biblioteci special desemnata pentru procesarea ei.
+           Va intoarce un template html populat de rezultat.
+        b. Un set de Models pentru stocarea datelor: User
+        c. Un set de Forms pentru afisarea de campuri in interfata si salvarea
+           intrarilor utilizatorilor in modele.
