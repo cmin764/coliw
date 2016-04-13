@@ -4,3 +4,4 @@ Flask-WTF>=0.12
 WTForms>=2.1
 WTForms-Appengine>=0.1
 peewee>=2.8.0
+Sphinx>=1.4.1
