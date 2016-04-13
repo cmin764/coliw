@@ -1,6 +1,6 @@
 Flask>=0.10.1
 Flask-Login>=0.3.2
 Flask-WTF>=0.12
-WTForms==2.1
-WTForms-Appengine==0.1
-peewee==2.8.0
+WTForms>=2.1
+WTForms-Appengine>=0.1
+peewee>=2.8.0

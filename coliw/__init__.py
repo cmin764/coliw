@@ -1,7 +1,15 @@
+import os
+
 from flask import Flask
+
+import config
 
 
 coliw = Flask(__name__)
-coliw.config.from_object("config")
+
+conf_name = os.getenv("FLASK_CONFIG") or "default"
+conf_cls = config.config[conf_name]
+coliw.config.from_object(conf_cls)
+conf_cls.init_app(coliw)
 
 import views
