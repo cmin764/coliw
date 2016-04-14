@@ -1,0 +1,4 @@
+* python.org -> documentation -> tutorial/library
+* box.com/cmiN -> tutorials -> Python
+* https://realpython.com/blog/python/flask-by-example-part-1-project-setup/
+* http://examples.flask-admin.org/
