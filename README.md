@@ -10,7 +10,8 @@ Clone repository, then install Python interpreter, `virtualenv` and its wrapper:
 git clone git@github.com:cmin764/coliw.git
 cd coliw
 
-sudo apt-get update && sudo apt-get install --upgrade python python-dev python-pip
+sudo apt-get update && sudo apt-get install --upgrade python python-dev python-setuptools
+sudo -H easy_install -U pip
 sudo -H pip install -U virtualenv virtualenvwrapper
 ```
 
