@@ -2,3 +2,4 @@
 * box.com/cmiN -> tutorials -> Python
 * https://realpython.com/blog/python/flask-by-example-part-1-project-setup/
 * http://examples.flask-admin.org/
+* http://www.bootstrapcheatsheets.com/ -> Digital -> glyphicons/fontawesome
