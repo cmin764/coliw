@@ -1,5 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Coming soon!</h1>
+
+<section class="row">
+    <h1 class="text-center"><strong>CoLiW</strong></h1>
+</section>
+
+<section class="row" id="history">
+    <div id="alert">
+        <div class="alert alert-info text-center" role="alert">
+            Ready
+        </div>
+    </div>
+    <div cass="col-lg-12">
+        <div class="form-group">
+            <label for="cli-history" class="sr-only">History:</label>
+            <textarea rows="20" cols="50" class="form-control" id="cli-history" disabled>Welcome to CoLiW
+
+Write help for info.</textarea>
+        </div>
+    </div>
+
+</section>
+
+<section class="row">
+    <div cass="col-lg-12">
+        <div class="form-group">
+            <label for="cli-entry" class="sr-only">Command:</label>
+            <input class="form-control" type="text" placeholder="command" id="cli-entry">
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="col-lg-2 pull-right">
+        <button type="button" class="btn btn-lg btn-primary btn-block" id="clear">Clear</button>
+    </div>
+</section>
+
+
 {% endblock %}

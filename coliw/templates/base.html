@@ -1,17 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}CoLiW{% endblock %}</title>
         {% block css %}
         <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/static/css/coliw.css" type="text/css" />
         {% endblock %}
         {% block script %}
-        <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/static/js/jquery-2.2.3.min.js" type="text/javascript"></script>
+        <script src="/static/js/jquery-2.2.3.min.js" type="text/javascript">
+        </script>
+        <script src="/static/js/bootstrap.min.js" type="text/javascript">
+        </script>
+        <script src="/static/js/coliw.js" type="text/javascript">
+        </script>
         {% endblock %}
     </head>
     <body>
         <div id="header">{% block header %}{% endblock %}</div>
-        <div id="content">{% block content %}{% endblock %}</div>
+        <div id="content" class="container">
+            {% block content %}{% endblock %}
+        </div>
         <div id="footer">{% block footer %}{% endblock %}</div>
     </body>
 </html>
