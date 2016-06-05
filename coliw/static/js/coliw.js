@@ -69,14 +69,13 @@ function enable_cli() {
 }
 
 
-function show_alert(msg, ok) {
+function show_alert(msg, type) {
     var content = `
         <div class="alert alert-{0} text-center" role="alert">
             {1}
         </div>
     `;
-    var alert = ok ? "success" : "danger";
-    content = String.format(content, alert, msg);
+    content = String.format(content, type, msg);
     var s = $("#alert");
     s.empty();
     s.append(content);
@@ -85,10 +84,10 @@ function show_alert(msg, ok) {
 
 function handle_response(code, response) {
     if (!code) {
-        show_alert("Success", true);
+        show_alert("Success", "success");
     } else {
         var msg = ERROR[code] + " (" + code + ")";
-        show_alert(msg, false);
+        show_alert(msg, "danger");
     }
     save_history(response);
 }
@@ -98,6 +97,12 @@ function loadall() {
     // Clear everything under the terminal history.
     $("#clear").click(function () {
         $("#cli-history").text("");
+        $("#cli-entry").focus();
+    });
+
+    $("#autoclear").click(function () {
+        var disable = $(this).prop("checked");
+        $("#clear").prop("disabled", disable);
     });
 
     // Send commands to the server and show output.
@@ -111,6 +116,10 @@ function loadall() {
             if (!cmd) {
                 return;    // empty command
             }
+            if ($("#autoclear").prop("checked")) {
+                $("#clear").click();
+            }
+            show_alert("Loading...", "warning");
             save_cmd(cmd);
             // Show it into the history.
             save_history(cmd);
@@ -124,10 +133,11 @@ function loadall() {
             req.done(function (resp) {
                 enable_cli();
                 handle_response(resp["code"], resp["response"]);
+                save_history(EOL);
             });
             req.fail(function () {
                 enable_cli();
-                show_alert("Invalid command", false);
+                show_alert("Invalid command", "danger");
             });
         } else if (key == 38) {
             // Up arrow.

@@ -11,11 +11,16 @@ class BaseError(Exception):
     CODE = 1
 
 
+class SuccessError(BaseError):
+
+    CODE = 0
+
+
 class ParseError(BaseError):
 
     CODE = 10
 
 
-class CallError(BaseError):
+class ExecError(BaseError):
 
     CODE = 20

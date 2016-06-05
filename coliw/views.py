@@ -4,6 +4,7 @@ from flask import (
 )
 
 from coliw import coliw, call
+from coliw.utils import ENCODING
 
 
 @coliw.route("/")
@@ -13,7 +14,7 @@ def index():
 
 @coliw.route("/command", methods=["POST"])
 def command():
-    cmd = request.form.get("cmd")
+    cmd = request.form.get("cmd").encode(ENCODING)
     if not cmd:
         abort(400)
     code, resp = call(cmd)

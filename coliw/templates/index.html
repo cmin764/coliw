@@ -15,9 +15,9 @@
     <div cass="col-lg-12">
         <div class="form-group">
             <label for="cli-history" class="sr-only">History:</label>
-            <textarea rows="20" cols="50" class="form-control" id="cli-history" disabled>Welcome to CoLiW
+            <textarea rows="20" cols="50" class="form-control" id="cli-history" readonly>Welcome to CoLiW
 
-Write help for info.</textarea>
+Write "--help" for info.</textarea>
         </div>
     </div>
 
@@ -27,16 +27,18 @@ Write help for info.</textarea>
     <div cass="col-lg-12">
         <div class="form-group">
             <label for="cli-entry" class="sr-only">Command:</label>
-            <input class="form-control" type="text" placeholder="command" id="cli-entry">
+            <input class="form-control" type="text" placeholder="command" id="cli-entry" />
         </div>
     </div>
 </section>
 
 <section class="row">
+    <div class="col-lg-2 pull-left checkbox">
+        <label><input id="autoclear" type="checkbox" /><strong class="label label-pill label-info">Auto-Clear</strong></label>
+    </div>
     <div class="col-lg-2 pull-right">
         <button type="button" class="btn btn-lg btn-primary btn-block" id="clear">Clear</button>
     </div>
 </section>
-
 
 {% endblock %}
