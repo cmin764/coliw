@@ -1,0 +1,14 @@
+#history {
+    margin-top: 5%;
+}
+
+#cli-history {
+    background-color: #003333;
+    color: #E6E6E6;
+    vertical-align: top;
+}
+
+#cli-entry {
+    background-color: #003333;
+    color: #E6E6E6;
+}
