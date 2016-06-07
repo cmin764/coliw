@@ -22,3 +22,26 @@ def command():
         abort(400)
     code, resp = call(cmd)
     return jsonify(code=code, response=resp)
+
+
+@coliw.route("/history", methods=["GET", "POST"])
+def history():
+    if request.method == "GET":
+        data = session.get("data", None)
+        if not data:
+            return jsonify(status=False)
+        return jsonify(status=True, **data)
+
+    elif request.method == "POST":
+        sh_idx = request.form.get("h_idx")
+        sh_list = request.form.get("h_list")
+        sh_text = request.form.get("h_text")
+        data = {
+            "h_idx": sh_idx,
+            "h_list": sh_list,
+            "h_text": sh_text
+        }
+        session["data"] = data
+        return jsonify(status=True)
+
+    abort(400)

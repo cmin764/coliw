@@ -54,7 +54,8 @@ function cmd_down() {
 
 function save_history(text) {
     var h = $("#cli-history");
-    h.text(h.text() + EOL + text);
+    var cnt = h.text() + EOL + text;
+    h.text(cnt.trimLeft());
     h.scrollTop(h.scrollTop() + h.height());
 }
 
@@ -90,6 +91,40 @@ function handle_response(code, response) {
         show_alert(msg, "danger");
     }
     save_history(response);
+}
+
+
+function upload_history() {
+    var text = $("#cli-history").text();
+    var req = $.ajax({
+        method: "POST",
+        url: "/history",
+        data: {
+            h_idx: JSON.stringify(H_IDX),
+            h_list: JSON.stringify(H_LIST),
+            h_text: JSON.stringify(text)
+        }
+    });
+}
+
+
+function download_history() {
+    var req = $.ajax({
+        method: "GET",
+        url: "/history"
+    });
+    req.done(function (resp) {
+        if (!resp["status"]) {
+            return;
+        }
+        h_idx = JSON.parse(resp["h_idx"]);
+        h_list = JSON.parse(resp["h_list"]);
+        h_text = JSON.parse(resp["h_text"]);
+        H_IDX = h_idx;
+        H_LIST = h_list;
+        $("#clear").click();
+        save_history(h_text);
+    });
 }
 
 
@@ -131,13 +166,16 @@ function loadall() {
                 data: {cmd: JSON.stringify(cmd)},
             });
             req.done(function (resp) {
-                enable_cli();
                 handle_response(resp["code"], resp["response"]);
                 save_history(EOL);
             });
             req.fail(function () {
-                enable_cli();
+
                 show_alert("Invalid command", "danger");
+            });
+            req.always(function () {
+                enable_cli();
+                upload_history();
             });
         } else if (key == 38) {
             // Up arrow.
@@ -149,6 +187,9 @@ function loadall() {
             $(this).val(cmd);
         }
     });
+
+    // Retrieve history on first load.
+    download_history();
 }
 
 
