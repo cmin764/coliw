@@ -170,12 +170,12 @@ function loadall() {
                 save_history(EOL);
             });
             req.fail(function () {
-
                 show_alert("Invalid command", "danger");
             });
             req.always(function () {
-                enable_cli();
                 upload_history();
+                enable_cli();
+                $("#cli-entry").focus();
             });
         } else if (key == 38) {
             // Up arrow.
