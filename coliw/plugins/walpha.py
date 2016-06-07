@@ -1,3 +1,4 @@
+import urllib2
 import xml.etree.ElementTree as ET
 
 from coliw.utils import EOL, ENCODING, TIMEOUT, OPENER, WebArgumentParser
@@ -12,7 +13,7 @@ URL = ("http://api.wolframalpha.com/v2/query?appid={key}"
 
 def walpha(args):
     # Get all the data in XML format.
-    url = URL.format(input=args.input)
+    url = URL.format(input=urllib2.quote(args.input))
     data = OPENER.open(url, timeout=TIMEOUT).read()
     # Extract results.
     root = ET.fromstring(data)

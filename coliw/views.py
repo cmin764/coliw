@@ -1,3 +1,5 @@
+import json
+
 from flask import (
     request, render_template, session,
     abort, jsonify
@@ -14,7 +16,8 @@ def index():
 
 @coliw.route("/command", methods=["POST"])
 def command():
-    cmd = request.form.get("cmd").encode(ENCODING)
+    cmd = request.form.get("cmd")
+    cmd = json.loads(cmd).encode(ENCODING)
     if not cmd:
         abort(400)
     code, resp = call(cmd)

@@ -128,7 +128,7 @@ function loadall() {
             var req = $.ajax({
                 method: "POST",
                 url: "/command",
-                data: {cmd: cmd},
+                data: {cmd: JSON.stringify(cmd)},
             });
             req.done(function (resp) {
                 enable_cli();

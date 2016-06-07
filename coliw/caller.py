@@ -1,5 +1,6 @@
 import pkgutil
 import os
+import shlex
 
 from coliw import exceptions
 from coliw.utils import PACKAGE, WebArgumentParser
@@ -31,20 +32,30 @@ def parse(cmd):
     for name, plugin in plugins.items():
         subparsers.add_parser(name, parents=[plugin.parser], help=plugin.HELP)
 
-    # TODO(cmiN): take care of |, <, >, <<, >> symbols
-    cmds = cmd.split()
+    cmds = shlex.split(cmd)
     if cmds[0] == "web":
         cmds.pop(0)
-    args = parser.parse_args(cmds)
-    return args
+    # Filter pipes and chain commands.
+    while cmds.count("|"):
+        idx = cmds.index("|")
+        data = (yield)
+        crt = cmds[:idx] + ([data] if data is not None else [])
+        cmds = cmds[idx + 1:]
+        yield parser.parse_args(crt)
+    data = (yield)
+    crt = cmds + ([data] if data is not None else [])
+    yield parser.parse_args(crt)
 
 
 def call(cmd):
     """Parse the command and execute it."""
     parser = WebArgumentParser()
     try:
-        args = parse(cmd)
-        data = args.func(args)
+        parse_gen = parse(cmd)
+        data = None
+        for _ in parse_gen:
+            args = parse_gen.send(data)
+            data = args.func(args)
     except Exception as exc:
         msg = "{}{}".format(parser.sio.getvalue(), str(exc)).strip()
         return exceptions.get_code(exc), msg
