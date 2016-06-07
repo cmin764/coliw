@@ -1,3 +1,4 @@
+gunicorn
 Flask>=0.10.1
 Flask-Login>=0.3.2
 Flask-WTF>=0.12
