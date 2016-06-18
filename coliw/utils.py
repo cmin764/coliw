@@ -4,6 +4,8 @@ import threading
 import urllib2
 from StringIO import StringIO
 
+from flask import session
+
 from coliw import exceptions
 
 
@@ -25,6 +27,21 @@ TIMEOUT = 10
 
 OPENER = urllib2.build_opener()
 OPENER.addheaders = [("User-agent", USER_AGENT)]
+
+
+def read_content(name):
+    data = session.get(name)
+    if data is None:
+        raise exceptions.ExecError("no such file {}".format(name))
+    return data
+
+
+def write_content(name, data, append=False):
+    _data = None
+    if append:
+        _data = session.get(name)
+    data = (_data or "") + data
+    session[name] = data
 
 
 class WebArgumentParser(argparse.ArgumentParser):
