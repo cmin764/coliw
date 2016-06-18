@@ -9,10 +9,11 @@ Welcome to CoLiW's documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   intro
-
+    intro
+    usage
+    api
 
 
 Indices and tables
