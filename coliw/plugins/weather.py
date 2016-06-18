@@ -4,7 +4,7 @@ import urllib2
 from coliw.utils import EOL, TIMEOUT, ENCODING, OPENER, WebArgumentParser
 
 
-HELP = "compute/retrieve mathematical expressions/info"
+HELP = "get weather by giving a city name"
 
 KEY = "db310acfbeeb7a7697f13bb18c43a073"
 
