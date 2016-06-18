@@ -1,4 +1,4 @@
-# CoLiW (Command Line for Web)
+# CoLiW (Command Line for Web) [![Documentation Status](https://readthedocs.org/projects/coliw/badge/?version=latest)](http://coliw.readthedocs.io/en/latest/?badge=latest)
 
 Brings CLI to web by executing high level mash-up commands for common services.
 
@@ -58,9 +58,10 @@ deactivate
 
 ----
 
+* Homepage: http://coliw.herokuapp.com/
+* Documentation: http://coliw.readthedocs.io/en/latest/
+* Source: https://github.com/cmin764/coliw.git
+* License: MIT
 * Authors:
   + Cosmin Poieana <cosmin.poieana@info.uaic.ro>
   + Corneliu Tamas <corneliu.tamas@info.uaic.ro>
-* Homepage: http://coliw.herokuapp.com/
-* Source: https://github.com/cmin764/coliw.git
-* License: MIT

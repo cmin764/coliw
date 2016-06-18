@@ -143,8 +143,14 @@ function loadall() {
     });
 
     // Send commands to the server and show output.
-    $("#cli-entry").keypress(function (event) {
+    $("#cli-entry").keydown(function (event) {
+        if (!event) {
+            event = window.event;
+        }
         var key = event.keyCode;
+        if (event.charCode && key == 0) {
+            key = event.charCode;
+        }
 
         if (key == 13) {
             // Enter.
