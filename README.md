@@ -61,6 +61,6 @@ deactivate
 * Authors:
   + Cosmin Poieana <cosmin.poieana@info.uaic.ro>
   + Corneliu Tamas <corneliu.tamas@info.uaic.ro>
-* Homepage: *coming soon*
+* Homepage: http://coliw.herokuapp.com/
 * Source: https://github.com/cmin764/coliw.git
 * License: MIT

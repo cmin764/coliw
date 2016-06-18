@@ -55,6 +55,7 @@ def postparse(parser, cmd):
 
 
 def parse(cmd):
+    """Split given command into sub-commands and analyse requested actions."""
     plugins = discover_plugins()
 
     parser = WebArgumentParser(

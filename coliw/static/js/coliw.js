@@ -27,7 +27,7 @@ if (!String.format) {
 function save_cmd(cmd) {
     H_LIST.unshift(cmd);
     if (H_LIST.length > H_SIZE) {
-        H.pop();
+        H_LIST.pop();
     }
     H_IDX = -1;
 }
@@ -90,7 +90,9 @@ function handle_response(code, response) {
         var msg = ERROR[code] + " (" + code + ")";
         show_alert(msg, "danger");
     }
-    save_history(response);
+    if (response) {
+        save_history(response);
+    }
 }
 
 
@@ -157,7 +159,7 @@ function loadall() {
             show_alert("Loading...", "warning");
             save_cmd(cmd);
             // Show it into the history.
-            save_history(cmd);
+            save_history("> " + cmd);
             // Send string through API.
             disable_cli();
             var req = $.ajax({
